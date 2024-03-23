@@ -1,0 +1,30 @@
+from flask import Flask,redirect,url_for
+
+#WSGI application
+app = Flask(__name__)
+
+@app.route('/')
+def welcome():
+    return 'welcome to my channel'
+
+@app.route('/passed/<int:score>')
+def passed(score):
+    return 'Congratulations! You have passed. Your score is ' + str(score)
+
+@app.route('/fail/<int:score>')
+def fail(score):
+    return 'You have failed. Better luck next time. Your score is ' +str(score)
+
+@app.route('/result/<int:marks>')
+def result(marks):
+    var1=""
+    if marks<40:
+        var1="fail"
+    else:
+        var1="passed"
+#    return var1
+    return redirect(url_for(var1,score=marks))
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
