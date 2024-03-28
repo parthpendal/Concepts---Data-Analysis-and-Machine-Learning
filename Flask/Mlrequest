@@ -1,0 +1,5 @@
+import requests
+r = requests.post("http://localhost:5000/api", 
+                  json={"sepal_length": 5.5, "sepal_width": 4.2, "petal_length": 1.4, "petal_width":0.2}
+                 )
+print(r.text)
